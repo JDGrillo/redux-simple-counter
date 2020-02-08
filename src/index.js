@@ -10,3 +10,7 @@ subscribe(() => render(getState()))
 // Dispatch the "INCREMENT" action every time the +1 button is pressed
 const incrementButton = document.getElementById('increment');
 incrementButton.addEventListener('click', e => dispatch({ type: "INCREMENT" }));
+
+// Dispatch the "DECREMENT" action every time the -1 button is pressed
+const decrementButton = document.getElementById('decrement');
+decrementButton.addEventListener('click', e => dispatch({ type: "DECREMENT" }));
