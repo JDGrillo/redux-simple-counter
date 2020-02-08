@@ -1,9 +1,5 @@
 const { createStore } = Redux;
 
-function checkNumber(value) {
-    return (parseInt(value) ? parseInt(value) : 0)
-}
-
 // Initialize the Redux store by passing it our reducer (defined globally in reducer.js)
 const { subscribe, dispatch, getState } = createStore(reducer);
 
@@ -31,6 +27,6 @@ decrementFiveButton.addEventListener('click', e => dispatch({ type: "CHANGEVALUE
 const changeColorSelect = document.getElementById('changeColor');
 changeColorSelect.addEventListener('change', e => dispatch({ type: "CHANGECOLOR", color: changeColorSelect.value }));
 
-// Dispatch the "CHANGEVALUE" action with whatever user selects
+// Dispatch the "RESETVALUE" action with whatever user selects
 const changeCustomAmount = document.getElementById('customAmount');
-changeCustomAmount.addEventListener('change', e => dispatch({ type: "CHANGEVALUE", value: checkNumber(changeCustomAmount.value) }));
+changeCustomAmount.addEventListener('input', e => dispatch({ type: "RESETVALUE", value: parseInt(e.target.value) }));
