@@ -1,5 +1,9 @@
 const { createStore } = Redux;
 
+function checkNumber(value) {
+    return (parseInt(value) ? parseInt(value) : 0)
+}
+
 // Initialize the Redux store by passing it our reducer (defined globally in reducer.js)
 const { subscribe, dispatch, getState } = createStore(reducer);
 
@@ -7,22 +11,26 @@ const { subscribe, dispatch, getState } = createStore(reducer);
 // Here we pass the Redux state to our render method (defined globally in render.js)
 subscribe(() => render(getState()))
 
-// Dispatch the "INCREMENTONE" action every time the +1 button is pressed
+// Dispatch the "CHANGEVALUE" action every time the +1 button is pressed
 const incrementOneButton = document.getElementById('incrementOne');
 incrementOneButton.addEventListener('click', e => dispatch({ type: "CHANGEVALUE", value: 1 }));
 
-// Dispatch the "DECREMENTONE" action every time the -1 button is pressed
+// Dispatch the "CHANGEVALUE" action every time the -1 button is pressed
 const decrementOneButton = document.getElementById('decrementOne');
 decrementOneButton.addEventListener('click', e => dispatch({ type: "CHANGEVALUE", value: -1 }));
 
-// Dispatch the "INCREMENTFIVE" action every time the +1 button is pressed
+// Dispatch the "CHANGEVALUE" action every time the +5 button is pressed
 const incrementFiveButton = document.getElementById('incrementFive');
 incrementFiveButton.addEventListener('click', e => dispatch({ type: "CHANGEVALUE", value: 5 }));
 
-// Dispatch the "DECREMENTFIVE" action every time the -1 button is pressed
+// Dispatch the "CHANGEVALUE" action every time the -5 button is pressed
 const decrementFiveButton = document.getElementById('decrementFive');
 decrementFiveButton.addEventListener('click', e => dispatch({ type: "CHANGEVALUE", value: -5 }));
 
 // Dispatch the "CHANGECOLOR" action every time the color from drop down is selected
 const changeColorSelect = document.getElementById('changeColor');
 changeColorSelect.addEventListener('change', e => dispatch({ type: "CHANGECOLOR", color: changeColorSelect.value }));
+
+// Dispatch the "CHANGEVALUE" action with whatever user selects
+const changeCustomAmount = document.getElementById('customAmount');
+changeCustomAmount.addEventListener('change', e => dispatch({ type: "CHANGEVALUE", value: checkNumber(changeCustomAmount.value) }));
